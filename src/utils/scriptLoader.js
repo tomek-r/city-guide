@@ -10,6 +10,8 @@ export function scriptLoader(src) {
             reject();
         }, false);
 
+        script.defer = true;
+        script.async = true;
         script.src = src;
 
         window.document.body.appendChild(script);
