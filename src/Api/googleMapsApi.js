@@ -65,7 +65,7 @@ export const createRoute = (route) => {
         }, (response, status) => {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
-                showSteps(response, route)
+                showSteps(response, route);
                 resolve(response);
             } else {
                 reject(status);

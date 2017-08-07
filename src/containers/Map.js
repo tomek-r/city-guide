@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
 class Map extends Component {
-  render() {
-    return(
-      <div id="map">This is Map</div>
-    )
-  }
+    componentDidMount() {
+
+    }
+
+    render() {
+        return(
+            <div id="map">Loading...</div>
+        )
+    }
 }
 export default Map;
