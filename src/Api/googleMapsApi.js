@@ -11,7 +11,7 @@ export const setupMap = (map) => {
     const url = `https://maps.googleapis.com/maps/api/js?key=YAIzaSyDX4kL7w9lQMa81i2kmUQSeUf_IuI6nQ0I&callback=${googleMapsCallback}`;
 
     return new Promise((resolve, reject) => {
-        window[googleMapsCallback] = () => {
+        const onSuccess = () => {
             googleMap = new window.google.maps.Map(map.ref, {
                 center: map.center,
                 zoom: map.zoom
@@ -21,7 +21,15 @@ export const setupMap = (map) => {
             directionsDisplay = new window.google.maps.DirectionsRenderer({ map: googleMap });
 
             resolve();
+        };
 
+        if (window.google && window.google.maps) {
+            onSuccess();
+            return;
+        }
+
+        window[googleMapsCallback] = () => {
+            onSuccess();
             delete window[googleMapsCallback];
         };
 
