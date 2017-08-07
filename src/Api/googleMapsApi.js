@@ -1,23 +1,36 @@
+import { scriptLoader } from '../utils/scriptLoader';
+
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUWXYZ';
+const googleMapsCallback = '$$_callback_$$';
 let directionsService;
 let directionsDisplay;
 
 export let googleMap;
 
 export const setupMap = (map) => {
-    googleMap = new window.googleMaps.Map(map.ref, {
-        center: map.center,
-        zoom: map.zoom
+    const url = `https://maps.googleapis.com/maps/api/js?key=YAIzaSyDX4kL7w9lQMa81i2kmUQSeUf_IuI6nQ0I&callback=${googleMapsCallback}`;
+
+    return new Promise((resolve, reject) => {
+        window[googleMapsCallback] = () => {
+            googleMap = new window.google.maps.Map(map.ref, {
+                center: map.center,
+                zoom: map.zoom
+            });
+
+            directionsService = new window.google.maps.DirectionsService();
+            directionsDisplay = new window.google.maps.DirectionsRenderer({ map: googleMap });
+
+            resolve();
+
+            delete window[googleMapsCallback];
+        };
+
+        scriptLoader(url).catch(reject);
     });
-
-    directionsService = new window.google.maps.DirectionsService();
-    directionsDisplay = new window.google.maps.DirectionsRenderer({ map: googleMap });
-
-    return googleMap;
 };
 
 export const addMarker = ({ position, index }) => {
-    return new window.googleMaps.Marker({
+    return new window.google.maps.Marker({
         position,
         label: alphabet[index % alphabet.length],
         map: googleMap
