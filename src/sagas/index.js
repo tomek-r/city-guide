@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects';
 import { watchInitializeMapSaga, watchAddMarkerSaga, watchCreateRouteSaga } from './watcher';
 
-// Here, we register our watcher saga(s) and export as a single generator 
-// function (startForeman) as our root Saga.
-export default function* startForman() {
-    yield fork([ watchInitializeMapSaga, watchAddMarkerSaga, watchCreateRouteSaga ]);
+export default function* rootSaga() {
+    yield fork(watchInitializeMapSaga);
+    yield fork(watchAddMarkerSaga);
+    yield fork(watchCreateRouteSaga);
 }

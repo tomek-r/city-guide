@@ -5,7 +5,7 @@ import * as types from '../constants/actionTypes';
 // Responsible for searching media library, making calls to the API
 // and instructing the redux-saga middle ware on the next line of action,
 // for success or failure operation.
-export function* initializeMapSaga({ payload }) {
+export function* initializeMapSaga(payload) {
     try {
         const map = yield call(setupMap, payload);
 

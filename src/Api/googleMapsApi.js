@@ -7,8 +7,8 @@ let directionsDisplay;
 
 export let googleMap;
 
-export const setupMap = (map) => {
-    const url = `https://maps.googleapis.com/maps/api/js?key=YAIzaSyDX4kL7w9lQMa81i2kmUQSeUf_IuI6nQ0I&callback=${googleMapsCallback}`;
+export const setupMap = ({ map }) => {
+    const url = `https://maps.googleapis.com/maps/api/js?key=AIzaSyB22IEIF-brmw7FZ2NvAQsXAtH6AVRbJSg&callback=${googleMapsCallback}`;
 
     return new Promise((resolve, reject) => {
         const onSuccess = () => {
@@ -56,7 +56,7 @@ export const showSteps = (response, route) => {
     }
 };
 
-export const createRoute = (route) => {
+export const createRoute = ({ route }) => {
     return new Promise((resolve, reject) => {
         directionsService.route({
             origin: route.startPoint.position,
