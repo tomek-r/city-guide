@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../common/Header';
 import Main from '../components/Main';
+import '../styles/style.css';
 
 // The parent component renders the Header component and component(s) in the
 // route the user navigates to.

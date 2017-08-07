@@ -8,11 +8,11 @@ class Map extends Component {
     componentDidMount() {
         this.props.dispatch(initializeMapAction({
             ref: this.mapRef,
-            zoom: 13,
             center: {
-                lat: -25.3631,
-                lng: 131.044
-            }
+                lat: 29.423795,
+                lng: -98.492306
+            },
+            zoom: 12
         }));
     }
 

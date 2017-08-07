@@ -8,7 +8,9 @@ export default {
     ],
     map: {
         ref: {},
-        center: { lat: 0, lng: 0 },
-        zoom: 13
+        center: {
+            lat: -98.6544878,
+            lng: 29.4813572
+        }
     }
-}
+};
